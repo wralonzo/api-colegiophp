@@ -6,14 +6,13 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->post('auth/register', 'AuthController::register');
-$routes->put('auth/update/(:num)', 'AuthController::updateUser/$1');
-$routes->get('auth/find/(:num)', 'AuthController::getUser/$1');
-$routes->post('auth/login', 'AuthController::login');
-$routes->get('auth/users', 'AuthController::users');
-$routes->delete('auth/delete/(:num)', 'AuthController::deleteOne/$1');
-$routes->post('auth/forgotPassword', 'AuthController::forgotPassword');
-$routes->get('auth/generate/(:num)', 'AuthController::generatePassword/$1');
+$routes->resource('alumnos', ['controller' => 'AlumnoController']);
+$routes->resource('asistencias', ['controller' => 'AsistenciaController']);
+$routes->resource('clases', ['controller' => 'ClaseController']);
+$routes->resource('clasealumnos', ['controller' => 'ClaseAlumnoController']);
+$routes->resource('grados', ['controller' => 'GradoController']);
+$routes->resource('notas', ['controller' => 'NotasController']);
+
 
 
 $routes->get('send-email', 'EmailController::send_email');
