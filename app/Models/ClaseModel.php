@@ -9,5 +9,5 @@ class ClaseModel extends Model
     protected $table      = 'clase';
     protected $primaryKey = 'id';
     protected $returnType = 'array';
-    protected $allowedFields = ['nombre', 'grado'];
+    protected $allowedFields = ['nombre', 'grado', 'user'];
 }
