@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->resource('alumnos', ['controller' => 'AlumnoController']);
-$routes->get('alumnos/clase', 'AlumnoController::alumnosPorClase');
+$routes->get('alumno/clase', 'AlumnoController::alumnosPorClase');
 $routes->resource('asistencias', ['controller' => 'AsistenciaController']);
 $routes->resource('clases', ['controller' => 'ClaseController']);
 $routes->resource('clasealumnos', ['controller' => 'ClaseAlumnoController']);
