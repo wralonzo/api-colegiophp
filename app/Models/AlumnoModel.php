@@ -26,7 +26,7 @@ class AlumnoModel extends Model
             $this->select('alumno.id, alumno.name, clasealumno.estado, clasealumno.aprobado');
 
             // Realiza el join entre las tablas alumno y clasealumno
-            $this->join('alumno', 'alumno.id = clasealumno.alumno');
+            $this->join('clasealumno', 'alumno.id = clasealumno.alumno');
 
             // Filtra por el ID de la clase
             $this->where('clasealumno.clase', $claseId);
