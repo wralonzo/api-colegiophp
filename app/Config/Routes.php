@@ -14,5 +14,9 @@ $routes->resource('grados', ['controller' => 'GradoController']);
 $routes->resource('notas', ['controller' => 'NotasController']);
 
 
+$routes->get('alumnos/clase', 'ClaseAlumnoController::alumnosPorClase');
+
+
+
 
 $routes->get('send-email', 'EmailController::send_email');

@@ -77,4 +77,19 @@ class AlumnoController extends ResourceController
             return $this->failServerError('Error al eliminar el alumno: ' . $e->getMessage());
         }
     }
+    // Método para obtener alumnos por clase
+    public function alumnosPorClase()
+    {
+        try {
+            $parametro = $this->request->getGet('clase');
+            $result = $this->model->getAlumnosPorClase($parametro);
+
+            if (empty($result)) {
+                return $this->respond([], 200);
+            }
+            return $this->respond($result, 200);
+        } catch (Exception $e) {
+            return $this->failServerError('Error al obtener los alumnos por clase: ' . $e->getMessage());
+        }
+    }
 }
