@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\NotasModel;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
+use App\Models\UsersModel;
 
 class NotasController extends ResourceController
 {
@@ -15,7 +16,21 @@ class NotasController extends ResourceController
     public function index()
     {
         try {
-            $data = $this->model->findAll();
+            $data = [];
+            $parametro = $this->request->getGet('idUser');
+            $userModel = new UsersModel();
+            $user = $userModel->find($parametro);
+            if ($user) {
+                if ($user['role'] == 'Padre') {
+                    $data = $this->model->getAllByUser($user['id']);
+                }
+                $data = $this->model->getAll();
+                return $this->respond($data, 200);
+            } else {
+                $data = $this->model->getAll();
+                return $this->respond($data, 200);
+            }
+
             return $this->respond($data, 200);
         } catch (Exception $e) {
             return $this->failServerError('Error al obtener los recursos: ' . $e->getMessage());
