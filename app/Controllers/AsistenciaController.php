@@ -14,7 +14,16 @@ class AsistenciaController extends ResourceController
     public function index()
     {
         try {
-            $data = $this->model->findAll();
+            $data = [];
+            $parametro = $this->request->getGet('role');
+            $parametro2 = $this->request->getGet('idUser');
+            if ($parametro == 'Padre') {
+                $data = $this->model->getAllByUser($parametro2);
+                return $this->respond($data, 200);
+            } else {
+                $data = $this->model->getAll();
+                return $this->respond($data, 200);
+            }
             return $this->respond($data, 200);
         } catch (Exception $e) {
             return $this->failServerError('Error al obtener las asistencias: ' . $e->getMessage());
@@ -37,7 +46,7 @@ class AsistenciaController extends ResourceController
     public function create()
     {
         try {
-            $data = $this->request->getJSON(true); 
+            $data = $this->request->getJSON(true);
             if ($this->model->insert($data)) {
                 return $this->respondCreated($data);
             }
@@ -50,7 +59,7 @@ class AsistenciaController extends ResourceController
     public function update($id = null)
     {
         try {
-            $data = $this->request->getJSON(true); 
+            $data = $this->request->getJSON(true);
             if (!$this->model->find($id)) {
                 return $this->failNotFound('Asistencia no encontrada');
             }

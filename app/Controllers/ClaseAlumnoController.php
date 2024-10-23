@@ -15,7 +15,7 @@ class ClaseAlumnoController extends ResourceController
     public function index()
     {
         try {
-            $data = $this->model->findAll();
+            $data = $this->model->getAll();
             return $this->respond($data, 200);
         } catch (Exception $e) {
             return $this->failServerError('Error al obtener los alumnos: ' . $e->getMessage());
