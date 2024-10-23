@@ -18,9 +18,10 @@ class NotasModel extends Model
             $this->select('notas.id,
             notas.alumno,
             notas.nota,
+            notas.clase,
             notas.created_at,
             clase.id as idClase,
-            clase.name as nameClase,
+            clase.nombre as nameClase,
             alumno.id as idAlumno,
             alumno.name as nameAlumno');
             $this->join('clase', 'clase.id = notas.clase');
