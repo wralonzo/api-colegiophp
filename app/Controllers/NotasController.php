@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Models\GradoModel;
+use App\Models\NotasModel;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 
-class GradoController extends ResourceController
+class NotasController extends ResourceController
 {
-    protected $modelName = 'App\Models\GradoModel';
+    protected $modelName = 'App\Models\NotasModel';
     protected $format    = 'json';
 
     // Métodos similares a AlumnoController...
