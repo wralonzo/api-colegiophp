@@ -17,14 +17,10 @@ class NotasController extends ResourceController
     {
         try {
             $data = [];
-            $parametro = $this->request->getGet('idUser');
-            $userModel = new UsersModel();
-            $user = $userModel->find($parametro);
-            if ($user) {
-                if ($user['role'] == 'Padre') {
-                    $data = $this->model->getAllByUser($user['id']);
-                }
-                $data = $this->model->getAll();
+            $parametro = $this->request->getGet('role');
+            $parametro2 = $this->request->getGet('idUser');
+            if ($parametro == 'Padre') {
+                $data = $this->model->getAllByUser($parametro2);
                 return $this->respond($data, 200);
             } else {
                 $data = $this->model->getAll();
