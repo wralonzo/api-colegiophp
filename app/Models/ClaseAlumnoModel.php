@@ -21,11 +21,11 @@ class ClaseAlumnoModel extends Model
             clasealumno.clase,
             clasealumno.created_at,
             clasealumno.aprobado,
-            clase.id as idClase,
-            clase.nombre as nameClase,
+            grado.id as idClase,
+            grado.nombre as nameClase,
             alumno.id as idAlumno,
             alumno.name as nameAlumno');
-            $this->join('clase', 'clase.id = clasealumno.clase');
+            $this->join('grado', 'grado.id = clasealumno.clase');
             $this->join('alumno', 'alumno.id = clasealumno.alumno');
             $result = $this->get()->getResultArray();
             return $result;
