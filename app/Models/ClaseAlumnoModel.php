@@ -39,7 +39,7 @@ class ClaseAlumnoModel extends Model
         try {
             $this->select('clasealumno.id, grado.id as idClase, grado.nombre as gradoActual')
                 ->join('grado', 'grado.id = clasealumno.clase')
-                ->where('alumno.id', $id)
+                ->where('clasealumno.alumno', $id)
                 ->orderBy('clasealumno.id', 'DESC')
                 ->limit(1);
 
