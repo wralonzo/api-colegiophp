@@ -78,4 +78,15 @@ class ClaseAlumnoController extends ResourceController
             return $this->failServerError('Error al eliminar el alumno: ' . $e->getMessage());
         }
     }
+
+        // Métodos similares a AlumnoController...
+        public function indexGrado($id)
+        {
+            try {
+                $data = $this->model->getGrado($id);
+                return $this->respond($data, 200);
+            } catch (Exception $e) {
+                return $this->failServerError('Error al obtener los alumnos: ' . $e->getMessage());
+            }
+        }
 }

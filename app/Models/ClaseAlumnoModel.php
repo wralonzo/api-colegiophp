@@ -33,4 +33,22 @@ class ClaseAlumnoModel extends Model
             return ['error' => 'Error al obtener los alumnos por clase: ' . $e->getMessage()];
         }
     }
+
+    public function getGrado($id)
+    {
+        try {
+            $this->select('clasealumno.id,
+            grado.id as idClase,
+            grado.nombre as gradoActual');
+            $this->join('grado', 'grado.id = clasealumno.clase');
+            $this->where('alumno.id', $id)
+            ->orderBy('clasealumno.id', 'DESC')
+            ->limit(1);
+            $result = $this->get();
+
+            return $result;
+        } catch (Exception $e) {
+            return ['error' => 'Error al obtener los alumnos por clase: ' . $e->getMessage()];
+        }
+    }
 }
