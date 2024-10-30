@@ -22,6 +22,9 @@ class NotasController extends ResourceController
             if ($parametro == 'Padre') {
                 $data = $this->model->getAllByUser($parametro2);
                 return $this->respond($data, 200);
+            } else if ($parametro == 'Alumno') {
+                $data = $this->model->getAllByAlumno($parametro2);
+                return $this->respond($data, 200);
             } else {
                 $data = $this->model->getAll();
                 return $this->respond($data, 200);
