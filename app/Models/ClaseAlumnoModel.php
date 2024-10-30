@@ -37,17 +37,14 @@ class ClaseAlumnoModel extends Model
     public function getGrado($id)
     {
         try {
-            $this->select('clasealumno.id,
-            grado.id as idClase,
-            grado.nombre as gradoActual');
-            $this->join('clase', 'clase.id = clasealumno.clase');
-            $this->join('grado', 'clase.grado = grado.id');
-            $this->where('alumno.id', $id)
-            ->orderBy('clasealumno.id', 'DESC')
-            ->limit(1);
-            $result = $this->get();
+            $this->select('clasealumno.id, grado.id as idClase, grado.nombre as gradoActual')
+                ->join('clase', 'clase.id = clasealumno.clase')
+                ->join('grado', 'clase.grado = grado.id')
+                ->where('alumno.id', $id)
+                ->orderBy('clasealumno.id', 'DESC')
+                ->limit(1);
 
-            return $result;
+            return $this->get()->getRow();
         } catch (Exception $e) {
             return ['error' => 'Error al obtener los alumnos por clase: ' . $e->getMessage()];
         }
